@@ -1,6 +1,5 @@
 package edu.sber.lect1;
 
-
 import java.util.Arrays;
 
 public class BubbleSorter {
