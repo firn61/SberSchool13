@@ -11,29 +11,26 @@ public class CarSorter {
         List<String> models = Arrays.asList("Lada", "Peugeot", "Geely", "Mercedes", "Toyota", "Ford");
         //список кузовов
         List<String> types = Arrays.asList("hatchback", "sedan", "coupe", "SUV", "wagon");
-        List<Car> cars = new LinkedList<>();
+        List<Car> cars = new ArrayList<>();
         //рандомные авто
         for (int i = 0; i < carCount; i++) {
             cars.add(new Car(models.get(new Random().nextInt(models.size())),
                     types.get(new Random().nextInt(types.size()))));
         }
-        //лист листов с авто разных типов
-        List<List<Car>> sortedCars = new ArrayList<>();
+
+        //мапа с листами мишин
+        Map<String, List<Car>> sortedCars = new HashMap<>();
         //фильтр по типу, добавление в коллекции
         for (String type : types) {
-            sortedCars.add(cars.stream()
+            sortedCars.put(type, cars.stream()
                     .filter(Car -> Car.getType().equals(type))
                     .collect(Collectors.toList()));
         }
         //вывод на экран
-        for (List<Car> sortedCar : sortedCars) {
-            if (!sortedCar.isEmpty()) {
-                System.out.println("<== type ==> " + sortedCar.get(0).getType() + " count: " + sortedCar.size());
-                for (Car car : sortedCar) {
-                    System.out.println(car);
-                }
-            }
-        }
+        sortedCars.forEach((key, value) -> {
+            System.out.println("type: " + key + " count: " + value.size());
+            value.forEach(System.out::println);
+        });
     }
 }
 
