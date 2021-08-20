@@ -1,9 +1,6 @@
 package edu.sber.lect2;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class CarSorter {
@@ -14,7 +11,7 @@ public class CarSorter {
         List<String> models = Arrays.asList("Lada", "Peugeot", "Geely", "Mercedes", "Toyota", "Ford");
         //список кузовов
         List<String> types = Arrays.asList("hatchback", "sedan", "coupe", "SUV", "wagon");
-        List<Car> cars = new ArrayList<>();
+        List<Car> cars = new LinkedList<>();
         //рандомные авто
         for (int i = 0; i < carCount; i++) {
             cars.add(new Car(models.get(new Random().nextInt(models.size())),

@@ -5,9 +5,10 @@ import java.util.*;
 public class WordTasks {
 
     public static void main(String[] args) {
-        int rowNum = 100;
-        List<String> sourceList = new ResourceReader().read("TextExample", rowNum);
 
+        int rowNum = 100;
+
+        List<String> sourceList = new ResourceReader().read("TextExample", rowNum);
         System.out.println("case1: " + case1(sourceList));
 
         System.out.println("case2 output: ");
