@@ -6,7 +6,7 @@ public class WordTasks {
 
     public static void main(String[] args) {
 
-        int rowNum = 100;
+        int rowNum = 10;
 
         List<String> sourceList = new ResourceReader().read("TextExample", rowNum);
         System.out.println("case1: " + case1(sourceList));
@@ -39,6 +39,7 @@ public class WordTasks {
 
     //Задание 1: Подсчитайте количество различных слов в файле.
     static int case1(List list) {
+       // list.stream().distinct().count();
         return new HashSet(list).size();
     }
 

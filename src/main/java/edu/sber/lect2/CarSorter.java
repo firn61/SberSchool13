@@ -1,9 +1,14 @@
 package edu.sber.lect2;
 
 import java.util.*;
+import java.util.concurrent.ThreadLocalRandom;
 import java.util.stream.Collectors;
 
 public class CarSorter {
+
+    public static String getRandom(List<String> list) {
+        return list.get(ThreadLocalRandom.current().nextInt(list.size()));
+    }
 
     public static void main(String[] args) {
         int carCount = 100;
@@ -14,8 +19,7 @@ public class CarSorter {
         List<Car> cars = new ArrayList<>();
         //рандомные авто
         for (int i = 0; i < carCount; i++) {
-            cars.add(new Car(models.get(new Random().nextInt(models.size())),
-                    types.get(new Random().nextInt(types.size()))));
+            cars.add(new Car(getRandom(models), getRandom(types)));
         }
 
         //мапа с листами мишин
