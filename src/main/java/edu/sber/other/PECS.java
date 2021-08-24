@@ -16,22 +16,22 @@ public class PECS {
     }
 }
 
-class A {
-    @Override
-    public String toString() {
-        return "A{}";
-    }
-}
-class B extends A{
-    @Override
-    public String toString() {
-        return "B{}";
-    }
-}
-class C extends B{
-    @Override
-    public String toString() {
-        return "C{}";
-    }
-}
+//class A {
+//    @Override
+//    public String toString() {
+//        return "A{}";
+//    }
+//}
+//class B extends A{
+//    @Override
+//    public String toString() {
+//        return "B{}";
+//    }
+//}
+//class C extends B{
+//    @Override
+//    public String toString() {
+//        return "C{}";
+//    }
+//}
 
