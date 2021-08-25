@@ -14,7 +14,7 @@ public class CountMapImplTest {
     CountMap<String> cMap2 = new CountMapImpl<>();
 
 
-    public void init() {
+    public void initcMap() {
 
         cMap.add("hello"); //x3
         cMap.add("hello");
@@ -22,6 +22,10 @@ public class CountMapImplTest {
         cMap.add("world"); //x2
         cMap.add("world");
         cMap.add("bye");   //x1
+
+    }
+
+    public void initcMap2(){
 
         cMap2.add("world");//x3
         cMap2.add("world");
@@ -49,7 +53,7 @@ public class CountMapImplTest {
     @Test
     public void addCase2() {
 
-        init();
+        initcMap();
         cMap.add("hello");
 
         assertEquals(cMap.toMap(), new HashMap() {{
@@ -71,7 +75,7 @@ public class CountMapImplTest {
     @Test
     public void getCountCase2() {
 
-        init();
+        initcMap();
         assertEquals(cMap.getCount("hello"), 3);
 
     }
@@ -80,7 +84,7 @@ public class CountMapImplTest {
     @Test
     public void removeCase1() {
 
-        init();
+        initcMap();
         assertEquals(cMap.remove("hello"), 3);
 
     }
@@ -88,7 +92,7 @@ public class CountMapImplTest {
     @Test
     public void removeCase2() {
 
-        init();
+        initcMap();
         cMap.add("hello");
         cMap.remove("hello");
         cMap.remove("hello");
@@ -106,7 +110,7 @@ public class CountMapImplTest {
     @Test
     public void sizeCase2() {
 
-        init();
+        initcMap();
         assertEquals(cMap.size(), 3);
 
     }
@@ -114,7 +118,8 @@ public class CountMapImplTest {
     @Test
     public void addAllCase1() {
 
-        init();
+        initcMap();
+        initcMap2();
         cMap.addAll(cMap2);
         assertEquals(cMap.toMap(), new HashMap(){{
             put("hello", 5);
@@ -128,7 +133,7 @@ public class CountMapImplTest {
     @Test
     public void toMapCase1() {
 
-        init();
+        initcMap();
         assertEquals(cMap.toMap(), new HashMap(){{
             put("hello", 3);
             put("world", 2);
@@ -141,7 +146,7 @@ public class CountMapImplTest {
     public void toVoidMapCase1(){
 
         Map<String, Integer> destination = new HashMap<>();
-        init();
+        initcMap();
         cMap.toMap(destination);
         cMap.remove("hello");
         assertEquals(destination, new HashMap(){{
