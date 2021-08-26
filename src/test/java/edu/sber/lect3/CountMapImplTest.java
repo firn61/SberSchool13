@@ -43,10 +43,10 @@ public class CountMapImplTest {
         cMap.add("hello");
         cMap.add("world");
 
-        assertEquals(cMap.toMap(), new HashMap(){{
+        assertEquals(new HashMap(){{
             put("hello", 2);
             put("world", 1);
-        }});
+        }}, cMap.toMap());
 
     }
 
@@ -56,11 +56,11 @@ public class CountMapImplTest {
         initcMap();
         cMap.add("hello");
 
-        assertEquals(cMap.toMap(), new HashMap() {{
+        assertEquals(new HashMap() {{
             put("hello", 4);
             put("world", 2);
             put("bye", 1);
-        }});
+        }}, cMap.toMap());
 
     }
 
@@ -68,7 +68,7 @@ public class CountMapImplTest {
     @Test
     public void getCountCase1() {
 
-        assertEquals(cMap.getCount("some string"), 0);
+        assertEquals(0, cMap.getCount("some string"));
 
     }
 
@@ -76,7 +76,7 @@ public class CountMapImplTest {
     public void getCountCase2() {
 
         initcMap();
-        assertEquals(cMap.getCount("hello"), 3);
+        assertEquals(3, cMap.getCount("hello"));
 
     }
 
@@ -85,7 +85,7 @@ public class CountMapImplTest {
     public void removeCase1() {
 
         initcMap();
-        assertEquals(cMap.remove("hello"), 3);
+        assertEquals(3,cMap.remove("hello"));
 
     }
 
@@ -96,14 +96,14 @@ public class CountMapImplTest {
         cMap.add("hello");
         cMap.remove("hello");
         cMap.remove("hello");
-        assertEquals(cMap.remove("hello"), 4);
+        assertEquals(4, cMap.remove("hello"));
 
     }
 
     @Test
     public void sizeCase1() {
 
-        assertEquals(cMap.size(), 0);
+        assertEquals(0, cMap.size());
 
     }
 
@@ -111,7 +111,7 @@ public class CountMapImplTest {
     public void sizeCase2() {
 
         initcMap();
-        assertEquals(cMap.size(), 3);
+        assertEquals(3, cMap.size());
 
     }
 
@@ -121,12 +121,12 @@ public class CountMapImplTest {
         initcMap();
         initcMap2();
         cMap.addAll(cMap2);
-        assertEquals(cMap.toMap(), new HashMap(){{
+        assertEquals(new HashMap(){{
             put("hello", 5);
             put("world", 5);
             put("bye", 1);
             put("another string", 1);
-        }});
+        }}, cMap.toMap());
 
     }
 
@@ -134,11 +134,11 @@ public class CountMapImplTest {
     public void toMapCase1() {
 
         initcMap();
-        assertEquals(cMap.toMap(), new HashMap(){{
+        assertEquals(new HashMap(){{
             put("hello", 3);
             put("world", 2);
             put("bye", 1);
-        }});
+        }}, cMap.toMap());
 
     }
 
@@ -149,11 +149,11 @@ public class CountMapImplTest {
         initcMap();
         cMap.toMap(destination);
         cMap.remove("hello");
-        assertEquals(destination, new HashMap(){{
+        assertEquals(new HashMap(){{
             put("hello", 3);
             put("world", 2);
             put("bye", 1);
-        }});
+        }}, destination);
 
     }
 }

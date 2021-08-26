@@ -6,16 +6,9 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-public class CountMapRunner {
 
-    public static void main(String[] args) {
 
-        System.out.println("<= check test folder =>");
-
-    }
-}
-
-class CountMapImpl<T> implements CountMap<T> {
+public class CountMapImpl<T> implements CountMap<T> {
 
     private final Set<T> elements = new HashSet<>();
     private final Map<T, Integer> lifeTimeMap = new HashMap<>();

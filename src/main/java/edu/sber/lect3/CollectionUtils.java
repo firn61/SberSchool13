@@ -8,62 +8,62 @@ public class CollectionUtils {
         destination.addAll(source);
     }
 
-    public static <T> List newArrayList() {
-        return new ArrayList<T>();
+    public static <T> List<T> newArrayList() {
+        return new ArrayList<>();
     }
 
-    public static <T> int indexOf(List<? extends T> source, T t) {
-        return source.indexOf(t);
+    public static <T> int indexOf(List<? extends T> source, Object o) {
+        return source.indexOf((T) o);
     }
 
-    public static <T> List limit(List<? extends T> source, int size) {
-        if (source.size() > size) {
-            return source.subList(0, size - 1);
-        } else {
-            return source;
-        }
+    public static <T> List<? extends T> limit(List<? extends T> source, int size) {
+        System.out.println(size);
+        // return source.size() > size ? source.subList(0, size - 1) : source;
+        return new ArrayList<>(source.subList(0, size));
     }
 
-    public static <T> void add(List<? super T> source, T t) {
-        source.add(t);
+    public static <T> void add(List<? super T> source, Object o) {
+        source.add((T) o);
     }
 
     public static <T> void removeAll(List<? super T> removeFrom, List<? extends T> c2) {
         removeFrom.removeAll(c2);
     }
 
-    public static <T> boolean containsAll(List<? extends T> c1, List<? extends T> c2) {
+    public static <T> boolean containsAll(List<? super T> c1, List<? extends T> c2) {
         return c1.containsAll(c2);
     }
 
-    public static <T> boolean containsAny(List<? extends T> c1, List<? extends T> c2) {
-        for (T t : c2) {
-            if (c1.contains(t)) {
-                return true;
-            }
-        }
-        return false;
+    public static <T> boolean containsAny(List<? super T> c1, List<? extends T> c2) {
+        return c2.stream().anyMatch(c1::contains);
     }
 
-    public static <T extends Comparable<T>> List range(List<? extends T> list, Object min, Object max) {
+    public static <T extends Comparable<T>> List<T> range(List<? extends T> list, Object min, Object max) {
         Collections.sort(list);
-        int minElementPos = -1;
-        int maxElementPos = -1;
-        for (int i = 0; i < list.size() - 1; i++) {
-            if ((list.get(i).compareTo((T) min) == 0) && (minElementPos == -1)) {
-                minElementPos = i;
-            }
-            if (list.get(i).compareTo((T) max) == 0){
-                maxElementPos = i;
-            }
-            if (list.get(i).compareTo((T) max) == 1) {
-                break;
+        List<T> result = new ArrayList<>();
+        for (T t : list) {
+            if ((t.compareTo((T) min) >= 0) && (t.compareTo((T) max) <= 0)) {
+                add(result, t);
             }
         }
-        return list.subList(minElementPos, maxElementPos);
+        return result;
     }
 
     public static <T extends Comparable<T>> List range(List<? extends T> list, Object min, Object max, Comparator comparator) {
+        List<T> result = new ArrayList<>();
+        Collections.sort(list, comparator);
+        for (T t : list) {
+            if ((t.compareTo((T) min) >= 0) && (t.compareTo((T) max) <= 0)) {
+                add(result, t);
+            }
+        }
+        return result;
+    }
 
+}
+class CollectionUtilComparator<T extends Comparable<T>> implements Comparator<T>{
+    @Override
+    public int compare(T o1, T o2) {
+        return o1.compareTo(o2);
     }
 }
