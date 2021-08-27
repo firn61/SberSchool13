@@ -171,4 +171,12 @@ public class CollectionUtilsTest {
         list1.add("element2");
         assertEquals(new ArrayList<>(Arrays.asList("element2", "element2")), CollectionUtils.range(list1, "element2", "element2", new CollectionUtilComparator()));
     }
+
+    @Test
+    public void testRangeCase2() {
+        initList1();
+        Collections.shuffle(list1);
+        assertEquals(new ArrayList<>(Arrays.asList("element1", "element2", "element3", "element4", "element5")), CollectionUtils.range(list1, "element1", "element5", new CollectionUtilComparator()));
+    }
+
 }
