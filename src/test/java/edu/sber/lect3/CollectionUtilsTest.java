@@ -150,26 +150,32 @@ public class CollectionUtilsTest {
 
     @Test
     public void rangeWoCompCase1() {
+
         initList1();
         list1.remove("element3");
         Collections.shuffle(list1);
         assertEquals(new ArrayList<>(Arrays.asList("element2", "element4", "element5")), CollectionUtils.range(list1, "element2", "element5"));
+
     }
 
     @Test
     public void rangeWoCompCase2() {
+
         initList1();
         Collections.shuffle(list1);
         list1.add("element2");
         assertEquals(new ArrayList<>(Arrays.asList("element2", "element2")), CollectionUtils.range(list1, "element2", "element2"));
+
     }
 
     @Test
     public void testRangeCase1() {
+
         initList1();
         Collections.shuffle(list1);
         list1.add("element2");
         assertEquals(new ArrayList<>(Arrays.asList("element2", "element2")), CollectionUtils.range(list1, "element2", "element2", new CollectionUtilComparator()));
+
     }
 
     @Test
