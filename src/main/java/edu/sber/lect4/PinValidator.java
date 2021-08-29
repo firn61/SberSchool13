@@ -1,12 +1,20 @@
 package edu.sber.lect4;
 
-import java.util.concurrent.ThreadLocalRandom;
+import edu.sber.lect4.exceptions.WrongPinCodeExceptionFromValidator;
 
 public class PinValidator {
 
     private final String pin;
 
-    PinValidator(){
-        pin = String.valueOf(ThreadLocalRandom.current().nextInt(9999));
+    public boolean validate(String pin) throws WrongPinCodeExceptionFromValidator {
+        if (this.pin.equals(pin)) {
+            return true;
+        } else {
+            throw new WrongPinCodeExceptionFromValidator();
+        }
+    }
+
+    PinValidator(String pin) {
+        this.pin = pin;
     }
 }
