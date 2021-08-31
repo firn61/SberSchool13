@@ -7,7 +7,8 @@ import java.util.Date;
 public class TerminalImpl implements Terminal{
 
     private final PinValidator pinValidator;
-    private TerminalView terminalView;
+    private final TerminalView terminalView;
+    private final TerminalServer terminalServer;
     private int digitNum = 0;
     private int attemptCount = 0;
     private boolean blocked = false;
@@ -15,7 +16,6 @@ public class TerminalImpl implements Terminal{
     private StringBuilder pin = new StringBuilder();
     private StringBuilder sum = new StringBuilder();
     private long blockStartTime;
-    private final TerminalServer terminalServer;
 
     public TerminalImpl(PinValidator pinValidator, TerminalView terminalView,
                         TerminalServer terminalServer) {
@@ -60,6 +60,10 @@ public class TerminalImpl implements Terminal{
         terminalView.updateCodeLabel(String.valueOf(maskedPin));
     }
 
+    /**
+     *
+     * @throws AccountBlockedException при непральном вводе PIN кода 3 раза подряд
+     */
     private void checkAndResetBlockedState() throws AccountBlockedException {
         if (blocked) {
             long freezeTime = new Date().getTime() - blockStartTime;
@@ -84,11 +88,11 @@ public class TerminalImpl implements Terminal{
         flushSum();
         flushPin();
         attemptCount = 0;
-        terminalView.updateAmountLabel(Long.MIN_VALUE);
+        terminalView.updateBalanceLabel(Long.MIN_VALUE);
     }
 
     private void prepareToWithdraw() {
-        terminalView.updateAmountLabel(terminalServer.getBalance());
+        terminalView.updateBalanceLabel(terminalServer.getBalance());
         terminalView.updateCodeLabel("");
     }
 
@@ -138,9 +142,9 @@ public class TerminalImpl implements Terminal{
                 exit();
             } else if (sum.length() > 0) {
                 if (cPin == 'g') {
-                    terminalView.updateAmountLabel(terminalServer.withdraw(Long.valueOf(sum.toString())));
+                    terminalView.updateBalanceLabel(terminalServer.withdraw(Long.valueOf(sum.toString())));
                 } else if (cPin == 'd') {
-                    terminalView.updateAmountLabel(terminalServer.deposit(Long.valueOf(sum.toString())));
+                    terminalView.updateBalanceLabel(terminalServer.deposit(Long.valueOf(sum.toString())));
                 }
             } else {
                 sendException("Неверный ввод");

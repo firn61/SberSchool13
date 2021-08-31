@@ -18,7 +18,7 @@ public class URLReader {
     }
 
     public void readContent(String target) {
-        URLConnection urlConnection = null;
+        URLConnection urlConnection;
         try {
             urlConnection = new URL(target).openConnection();
             BufferedReader bufferedReader = new BufferedReader(

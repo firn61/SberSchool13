@@ -2,7 +2,7 @@ package edu.sber.lect4;
 
 import java.util.Scanner;
 
-public class TerminalConsoleView implements TerminalView{
+public class TerminalConsoleView implements TerminalView {
 
     private Terminal terminalImpl;
     Scanner scanner = new Scanner(System.in);
@@ -36,7 +36,9 @@ public class TerminalConsoleView implements TerminalView{
     }
 
     @Override
-    public void updateAmountLabel(long amount) {
-        System.out.println(amount);
+    public void updateBalanceLabel(long amount) {
+        if (amount != Long.MIN_VALUE) {
+            System.out.println(amount);
+        }
     }
 }

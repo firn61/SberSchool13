@@ -44,7 +44,7 @@ public class TerminalFrameView extends JFrame implements TerminalView {
     }
 
     @Override
-    public void updateAmountLabel(long amount) {
+    public void updateBalanceLabel(long amount) {
         if (amount == Long.MIN_VALUE) {
             balance.setText("");
         } else {

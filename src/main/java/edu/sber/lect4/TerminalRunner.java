@@ -1,7 +1,6 @@
 package edu.sber.lect4;
 
 public class TerminalRunner {
-
     public static void main(String[] args) {
         PinValidator pinValidator = new PinValidator("1234");
        // TerminalView terminalView = new TerminalFrameView();

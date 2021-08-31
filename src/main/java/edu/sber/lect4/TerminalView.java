@@ -6,7 +6,7 @@ public interface TerminalView {
     void updateCodeLabel(String maskedPin);
     void pushException(Exception e);
     void pushException(String message);
-    void updateAmountLabel(long amount);
+    void updateBalanceLabel(long amount);
     void sendAction(String name);
 
 }
