@@ -4,11 +4,11 @@ import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.util.Date;
 
-public class PerformanceProxyInvocationHandler2 implements InvocationHandler {
+public class PerformanceProxyInvocationHandler implements InvocationHandler {
 
     Object target;
 
-    public PerformanceProxyInvocationHandler2(Object target) {
+    public PerformanceProxyInvocationHandler(Object target) {
         this.target = target;
     }
 

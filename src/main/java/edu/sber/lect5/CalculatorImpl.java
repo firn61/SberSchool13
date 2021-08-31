@@ -2,9 +2,8 @@ package edu.sber.lect5;
 
 public class CalculatorImpl implements Calculator {
 
-
     @Override
-    public long calc(int number) throws InterruptedException {
+    public long calc(int number){
         //Thread.sleep(number);
         if (number == 0) {
             return 1;
