@@ -1,26 +1,56 @@
 package edu.sber.lect5;
 
+import java.lang.reflect.Method;
+import java.util.HashMap;
+import java.util.Map;
+
 public class MetodsGetter {
 
     public static void main(String[] args) {
-    C2 c2 = new C2();
-        System.out.println(c2.getClass().getCanonicalName());
+        C2 c2 = new C2();
+        Class<?> clazz = c2.getClass();
+        Map<Method, String> methodsMap = new HashMap<>();
+        while (clazz != null) {
+            Method[] methods = clazz.getDeclaredMethods();
+            for (Method method : methods) {
+                methodsMap.put(method, clazz.getCanonicalName());
+            }
+            clazz = clazz.getSuperclass();
+        }
+        System.out.println("===== class hierarchy methods =====");
+        for (Map.Entry<Method, String> e : methodsMap.entrySet()) {
+
+            System.out.println("c: " + e.getValue() + " " + e.getKey());
+        }
+        System.out.println("===== class getters =====");
+        for (Map.Entry<Method, String> methodStringEntry : methodsMap.entrySet()) {
+            if ((!methodStringEntry.getKey().getReturnType().equals(Void.TYPE)) &&
+                    (methodStringEntry.getKey().getName().startsWith("get") &&
+                            (methodStringEntry.getKey().getParameterCount() == 0))) {
+                System.out.println(methodStringEntry.getKey());
+            }
+        }
 
 
     }
 }
 
 
-abstract class C1{
+abstract class C1 {
+
     Integer a1;
     private String a2;
     public Boolean a3;
-    private void f1(){
+
+    private void f1() {
         int localvar1;
-    };
+    }
+
+    ;
+
     public abstract Integer f2();
 
-    public Integer getA1() {
+    private Integer getA1() {
         return a1;
     }
 
@@ -45,9 +75,10 @@ abstract class C1{
     }
 }
 
-class C2 extends C1{
+class C2 extends C1 {
     private String e1;
     public String e2;
+
     @Override
     public Integer f2() {
         return 0;

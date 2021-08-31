@@ -5,5 +5,6 @@ public interface Calculator{
      * Расчет факториала числа.
      * @param number
      */
-    int calc (int number);
+    @Metric
+    long calc (int number) throws InterruptedException;
 }
