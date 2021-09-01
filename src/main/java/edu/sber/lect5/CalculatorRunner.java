@@ -13,5 +13,15 @@ public class CalculatorRunner {
         Calculator calc2 = new PerformanceProxy(new CalculatorImpl());
         System.out.println(calc2.calc(5));
 
+        Calculator cachedCalc = (Calculator) Proxy.newProxyInstance(CalculatorRunner.class.getClassLoader(),
+                calc.getClass().getInterfaces(), new CacheProxyInvocationHandler(calc, StorageType.DISK));
+        System.out.println("5" + cachedCalc.calc(5));
+        System.out.println("5" + cachedCalc.calc(6));
+        System.out.println("5" + cachedCalc.calc(5));
+        System.out.println("6" + cachedCalc.calc(6));
+        System.out.println("5" + cachedCalc.calc(5));
+        System.out.println("7" + cachedCalc.calc(7));
+        System.out.println("7" + cachedCalc.calc(20));
+
     }
 }

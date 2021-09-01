@@ -3,6 +3,8 @@ package edu.sber.lect5;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 public class PerformanceProxyInvocationHandler implements InvocationHandler {
 

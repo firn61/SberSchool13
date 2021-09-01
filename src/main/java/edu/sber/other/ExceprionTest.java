@@ -17,6 +17,12 @@ public class ExceprionTest {
 
     public static void main(String[] args) {
         ExceprionTest et = new ExceprionTest();
-        System.out.println(et.test());
+       // System.out.println(et.test());
+        test(7654346799L);
     }
+    static void test(long n){
+        System.out.println("1");
+    }
+    static void test(int i){
+        System.out.println("2");}
 }
