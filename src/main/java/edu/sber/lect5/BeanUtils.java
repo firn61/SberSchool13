@@ -37,15 +37,15 @@ public class BeanUtils {
                 }
                 for (Class<?> clazz : klazzs) {
                     try {
-                        Method fromMethodCandidate = to.getClass()
+                        Method toMethodCandidate = to.getClass()
                                 .getDeclaredMethod(method.getName()
                                         .replace("get", "set"), clazz);
-                        if (fromMethodCandidate.getModifiers() == 1) {
-                            fromMethodCandidate.invoke(to, method.invoke(from));
+                        if (toMethodCandidate.getModifiers() == 1) {
+                            toMethodCandidate.invoke(to, method.invoke(from));
                         }
                         break;
                     } catch (NoSuchMethodException e) {
-                        // e.printStackTrace();
+                         e.printStackTrace();
                     } catch (IllegalAccessException e) {
                         e.printStackTrace();
                     } catch (InvocationTargetException e) {
