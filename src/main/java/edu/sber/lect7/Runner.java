@@ -1,6 +1,8 @@
 package edu.sber.lect7;
 
 import java.net.MalformedURLException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -10,9 +12,11 @@ public class Runner {
     private static List<Plugin> plugins = new ArrayList<>();
 
     public static void main(String[] args) {
-        PluginFolderSearcher pluginFolderSearcher = new PluginFolderSearcher(PLUGIN_PATH);
+        Path currentRelativePath = Paths.get("");
+        String s = currentRelativePath.toAbsolutePath().toString();
+        System.out.println("Current absolute path is: " + s);
         PluginManager pluginManager = new PluginManager(PLUGIN_PATH);
-        Map<String, List<String>> pluginsNames = pluginFolderSearcher.getAvaiblePlugins();
+        Map<String, List<String>> pluginsNames = pluginManager.getAvaiblePlugins();
         for (Map.Entry<String, List<String>> el : pluginsNames.entrySet()){
             for (String plugin: el.getValue()){
                 try{
