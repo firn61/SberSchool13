@@ -30,6 +30,7 @@ public class ObjectArrayIteratorTest {
     public void hasNext3(){
         ObjectArrayIterator i = new ObjectArrayIterator(new Object[]{"iter1", "iter2"});
         i.next();
+
         i.previous();
         i.previous();
         i.previous();
