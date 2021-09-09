@@ -1,5 +1,3 @@
-package edu.sber.lect7.pluginRootDirectory.plugin1;
-
 import edu.sber.lect7.Plugin;
 
 public class Plugin12 implements Plugin {

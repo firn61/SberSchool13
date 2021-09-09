@@ -14,20 +14,26 @@ public class Runner {
     public static void main(String[] args) {
         Path currentRelativePath = Paths.get("");
         String s = currentRelativePath.toAbsolutePath().toString();
-        System.out.println("Current absolute path is: " + s);
         PluginManager pluginManager = new PluginManager(PLUGIN_PATH);
         Map<String, List<String>> pluginsNames = pluginManager.getAvaiblePlugins();
-        for (Map.Entry<String, List<String>> el : pluginsNames.entrySet()){
-            for (String plugin: el.getValue()){
-                try{
-                    plugins.add(pluginManager.load(el.getKey(), plugin));
-                }catch(MalformedURLException e) {
+        for (Map.Entry<String, List<String>> el : pluginsNames.entrySet()) {
+            for (String plugin : el.getValue()) {
+                try {
+                    Plugin pluginClass = pluginManager.load(el.getKey(), plugin);
+                    if(pluginClass != null){
+                        plugins.add(pluginClass);
+
+                    }
+                } catch (MalformedURLException e) {
                     e.printStackTrace();
                 }
             }
         }
+      //  System.out.println(plugins.size());
         for (Plugin plugin : plugins) {
-            plugin.doUsefull();
+            if (plugin != null) {
+                plugin.doUsefull();
+            }
         }
     }
 }
