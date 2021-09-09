@@ -33,7 +33,7 @@ public class PluginManager {
      */
     public Plugin load(String pluginName, String pluginClassName) throws MalformedURLException {
         File filePath = new File(pathPath + "\\" + pluginName);
-        classLoader = new CustomClassLoader(new URL[]{filePath.toURI().toURL()}, false);
+        classLoader = new CustomClassLoader(new URL[]{filePath.toURI().toURL()}, true);
         try {
             Plugin p = (Plugin) classLoader.loadClass(pluginClassName).getConstructor().newInstance();
             return p;

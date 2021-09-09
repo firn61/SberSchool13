@@ -48,19 +48,21 @@ public class CustomClassLoader extends URLClassLoader {
             }
             input.close();
             byte[] classData = buffer.toByteArray();
-            System.out.println("========= original");
-            printBytes(classData);
+            //System.out.println("========= original");
+            // printBytes(classData);
 //            System.out.println("");
 //            System.out.println("========= encoded");
 //            byte[] codedClassData = DumbEncrypter.code(classData);
             //DumbWriter.writeFile(codedClassData, "D:/test", name + ".class");
 //            printBytes(codedClassData);
 //            System.out.println("");
-            System.out.println("========= decoded");
-            byte[] decdodedClassData = DumbEncrypter.encode(classData);
-            printBytes(decdodedClassData);
-            System.out.println("");
-            Class<?> c = super.defineClass(name, decdodedClassData, 0, classData.length);
+            //System.out.println("========= decoded");
+            if (isEncrypted) {
+                classData = DumbEncrypter.encode(classData);
+            }
+            //printBytes(decdodedClassData);
+            //System.out.println("");
+            Class<?> c = super.defineClass(name, classData, 0, classData.length);
             if (c != null) {
                 loadedClasses.put(name, c);
             }
