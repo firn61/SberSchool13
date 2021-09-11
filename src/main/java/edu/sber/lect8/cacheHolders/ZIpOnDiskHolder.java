@@ -36,7 +36,9 @@ public class ZIpOnDiskHolder extends OnDiskHolder{
         try (ObjectOutputStream oos = new ObjectOutputStream(new BufferedOutputStream(
                 new GZIPOutputStream(new FileOutputStream(path + getArgsHashCode(args)))))) {
             oos.writeObject(result);
-        } catch (IOException e) {
+        } catch (NotSerializableException e){
+            System.out.println("Object cannot be serialized");
+        }catch (IOException e) {
             e.printStackTrace();
         }
     }
@@ -44,8 +46,7 @@ public class ZIpOnDiskHolder extends OnDiskHolder{
     @Override
     public void add(String name, Object[] args, Object result, int elLimit) {
         List fullList = (List) result;
-        List limitList = new ArrayList(fullList.subList(0, elLimit));
-        add(name, args, result);
+        add(name, args, new ArrayList(fullList.subList(0, elLimit)));
     }
 
     @Override

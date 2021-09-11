@@ -36,7 +36,9 @@ public class OnDiskHolder implements FileHolder {
     public void add(String name, Object[] args, Object result) {
         try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(path + getArgsHashCode(args)))) {
             oos.writeObject(result);
-        } catch (IOException e) {
+        } catch (NotSerializableException e) {
+            System.out.println("Object cannot be serialized");
+        }catch (IOException e) {
             e.printStackTrace();
         }
     }
