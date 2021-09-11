@@ -29,7 +29,6 @@ public class Runner {
                 }
             }
         }
-      //  System.out.println(plugins.size());
         for (Plugin plugin : plugins) {
             if (plugin != null) {
                 plugin.doUsefull();
